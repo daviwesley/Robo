@@ -53,7 +53,7 @@ public class Robot  {
     	    		System.out.println("[!]Nivel crítico de bateria");
     	    	}else{
     	    		int tempY = getY();
-        			setY(tempY+10);    	    		
+        	        setY(tempY+10);    	    		
     	    	}
     		}
             if (tempRotacao == 2){//mover para o leste
@@ -61,7 +61,7 @@ public class Robot  {
     	    		System.out.println("[!]Nivel crítico de bateria");
     	    	}else{
     	    		int tempX = getX();
-        			setY(tempX+10);    	    		
+        		setY(tempX+10);    	    		
     	    	}
             	
     		}
@@ -70,7 +70,7 @@ public class Robot  {
     	    		System.out.println("[!]Nivel crítico de bateria");
     	    	}else{
     	    		int tempY = getY();
-        			setY(tempY-10);
+        		setY(tempY-10);
     	    	}
     		}
             if (tempRotacao == 4){//mover para o oeste
@@ -78,13 +78,31 @@ public class Robot  {
     	    		System.out.println("[!]Nivel crítico de bateria");
     	    	}else{
     	    		int tempX = getX();
-        			setY(tempX-10);
+        		setY(tempX-10);
     	    	}
             	
     		}
     	}
     }
-	
+	void rotacionarEsquerda(){
+    	int tempRotacao = getRotacao();
+    	if(tempRotacao == 1 ){
+    		setRotacao(4);
+    	}
+    	else{
+    		setRotacao(tempRotacao-1);
+    	}
+    }
+    
+    void rotacionarDireita(){
+    	int tempRotacao = getRotacao();
+    	if(tempRotacao == 4 ){
+    		setRotacao(1);
+    	}
+    	else{
+    		setRotacao(tempRotacao+1);
+    	}
+    }
 
 	public int getNivelBateria() {
 		return nivelBateria;
