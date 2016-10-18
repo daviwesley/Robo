@@ -16,6 +16,8 @@ public class Robot  {
 		setSexo(sexo);
 		setNivelBateria(100);
 		setRotacao(2);
+		setY(0);
+		setX(0);
 	}
 	
 	public char getSexo() {
@@ -29,20 +31,7 @@ public class Robot  {
 		int tempNivel = getNivelBateria();
 	}
 	
-	void girarEsquerda(){
-		if(getNivelBateria() <= 0){
-    		System.out.println("[!]Nivel crítico de bateria");
-    	}
-		
-	}
-    void girarDireita(){
-    	if(getNivelBateria() <= 0){
-    		System.out.println("[!]Nivel crítico de bateria");
-    	}
-	    
-	}
-    
-    void mover(int X, int Y){
+    void mover(){
     	if(getNivelBateria() <= 0){
     		System.out.println("[!]Nivel crítico de bateria");
     	}
@@ -53,7 +42,9 @@ public class Robot  {
     	    		System.out.println("[!]Nivel crítico de bateria");
     	    	}else{
     	    		int tempY = getY();
-        	        setY(tempY+10);    	    		
+        			setY(tempY+10);    	
+        			int nivel = getNivelBateria();
+        			setNivelBateria(nivel-1);
     	    	}
     		}
             if (tempRotacao == 2){//mover para o leste
@@ -61,7 +52,9 @@ public class Robot  {
     	    		System.out.println("[!]Nivel crítico de bateria");
     	    	}else{
     	    		int tempX = getX();
-        		setY(tempX+10);    	    		
+        			setX(tempX+10);    	
+        			int nivel = getNivelBateria();
+        			setNivelBateria(nivel-1);
     	    	}
             	
     		}
@@ -70,7 +63,9 @@ public class Robot  {
     	    		System.out.println("[!]Nivel crítico de bateria");
     	    	}else{
     	    		int tempY = getY();
-        		setY(tempY-10);
+        			setY(tempY-10);
+        			int nivel = getNivelBateria();
+        			setNivelBateria(nivel-1);
     	    	}
     		}
             if (tempRotacao == 4){//mover para o oeste
@@ -78,13 +73,16 @@ public class Robot  {
     	    		System.out.println("[!]Nivel crítico de bateria");
     	    	}else{
     	    		int tempX = getX();
-        		setY(tempX-10);
+        			setX(tempX-10);
+        			int nivel = getNivelBateria();
+        			setNivelBateria(nivel-1);
     	    	}
             	
     		}
     	}
     }
-	void rotacionarEsquerda(){
+	
+    void rotacionarEsquerda(){
     	int tempRotacao = getRotacao();
     	if(tempRotacao == 1 ){
     		setRotacao(4);
@@ -103,11 +101,13 @@ public class Robot  {
     		setRotacao(tempRotacao+1);
     	}
     }
-
 	public int getNivelBateria() {
 		return nivelBateria;
 	}
-
+    void mostrarEstado(){
+    	System.out.println("[+]X= " + getX() + " Y=" + getY() + " Rotacao=" + getRotacao() + " Nivel de Bateria=" + getNivelBateria());
+    }
+	
 
 	public void setNivelBateria(int nivelBateria) {
 		this.nivelBateria = nivelBateria;
@@ -144,9 +144,6 @@ public class Robot  {
 	public void setRotacao(int rotacao) {
 		this.rotacao = rotacao;
 	}
-	
-	
-	
 	
 	
 }
