@@ -6,8 +6,8 @@ public class Robot  {
 	private String nome;
 	private char sexo;
 	private int nivelBateria;
-        private int X;
-        private int Y;
+    private int X;
+    private int Y;
 	private int rotacao;//vai dizer se estar a esquerda ou direita
 	
 	
@@ -26,9 +26,21 @@ public class Robot  {
 	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
-	void comer(String nome, Integer energia){
-		Comida c= new Comida(nome,energia);
-		int tempNivel = getNivelBateria();
+	int comer(Comida c){
+		if(Comida.getStatus() == 0){
+			System.out.println("[!]Esse alimento já foi consumido");
+			return 0;
+		}
+		//Comida c= new Comida(nome,energia);
+		int tempBateria = getNivelBateria();
+		int total = tempBateria + c.getEnergia();
+		setNivelBateria(total);
+		if(getNivelBateria() >= 100){
+			setNivelBateria(100);
+		}
+		System.out.println("[+]" + c.getNome() + " Consumida");
+		Comida.setStatus(0);
+		return 1;
 	}
 	
     void mover(){
@@ -108,6 +120,13 @@ public class Robot  {
     	System.out.println("[+]X= " + getX() + " Y=" + getY() + " Rotacao=" + getRotacao() + " Nivel de Bateria=" + getNivelBateria());
     }
 	
+    void mostrarSexo(){
+    	if(sexo == 'm'){
+    		System.out.println("[+]Seu Robô é masculino");
+    	}else{
+    		System.out.println("[+]Seu Robô é feminino");
+    	}
+    }
 
 	public void setNivelBateria(int nivelBateria) {
 		this.nivelBateria = nivelBateria;
