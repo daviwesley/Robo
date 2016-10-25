@@ -7,8 +7,8 @@ public class Robot  {
 	private String nome;
 	private char sexo;
 	private int nivelBateria;
-    private int X;
-    private int Y;
+        private int X;
+        private int Y;
 	private int rotacao;//vai dizer se estar a esquerda ou direita
 	private Comida[] bucho = new Comida[10];
 	
