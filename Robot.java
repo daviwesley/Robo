@@ -9,6 +9,7 @@ public class Robot  {
     private int X;
     private int Y;
 	private int rotacao;//vai dizer se estar a esquerda ou direita
+	private Comida[] bucho = new Comida[10];
 	
 	
 	Robot(String nome,char sexo){
@@ -95,23 +96,33 @@ public class Robot  {
     }
 	
     void rotacionarEsquerda(){
-    	int tempRotacao = getRotacao();
-    	if(tempRotacao == 1 ){
-    		setRotacao(4);
+    	if(getNivelBateria() <= 0){
+    		System.out.println("[!]Nivel crítico de bateria");
+    	}else{
+    		int tempRotacao = getRotacao();
+        	if(tempRotacao == 1 ){
+        		setRotacao(4);
+        	}
+        	else{
+        		setRotacao(tempRotacao-1);
+        	}
     	}
-    	else{
-    		setRotacao(tempRotacao-1);
-    	}
+    	
     }
     
     void rotacionarDireita(){
-    	int tempRotacao = getRotacao();
-    	if(tempRotacao == 4 ){
-    		setRotacao(1);
+    	if(getNivelBateria() <= 0){
+    		System.out.println("[!]Nivel crítico de bateria");
+    	}else{
+    		int tempRotacao = getRotacao();
+        	if(tempRotacao == 4 ){
+        		setRotacao(1);
+        	}
+        	else{
+        		setRotacao(tempRotacao+1);
+        	}
     	}
-    	else{
-    		setRotacao(tempRotacao+1);
-    	}
+    	
     }
 	public int getNivelBateria() {
 		return nivelBateria;
@@ -125,6 +136,23 @@ public class Robot  {
     		System.out.println("[+]Seu Robô é masculino");
     	}else{
     		System.out.println("[+]Seu Robô é feminino");
+    	}
+    }
+    
+    void carregarBateria(){
+    	/*setNivelBateria(100);
+    	System.out.println("[+]Bateria carregada! ");*/
+    	for(int i = 0; i < bucho.length; i++){
+    		if(bucho[i].status == 1){
+    			int tempBateria = getNivelBateria();
+    			int total = tempBateria + bucho[i].getEnergia();
+    			setNivelBateria(total);
+    			if(getNivelBateria()>=100){
+    				setNivelBateria(100);
+    				System.out.println("[+]Bateria totalmente carregada.");
+    				break;
+    			}
+    		}
     	}
     }
 
