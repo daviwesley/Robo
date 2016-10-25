@@ -1,5 +1,6 @@
 package br.robot.poo;
 
+import java.util.Scanner;
 
 public class Robot  {
 
@@ -28,7 +29,7 @@ public class Robot  {
 		this.sexo = sexo;
 	}
 	int comer(Comida c){
-		if(Comida.getStatus() == 0){
+		if(c.getStatus() == 0){
 			System.out.println("[!]Esse alimento já foi consumido");
 			return 0;
 		}
@@ -40,7 +41,7 @@ public class Robot  {
 			setNivelBateria(100);
 		}
 		System.out.println("[+]" + c.getNome() + " Consumida");
-		Comida.setStatus(0);
+		c.setStatus(0);
 		return 1;
 	}
 	
@@ -142,8 +143,9 @@ public class Robot  {
     void carregarBateria(){
     	/*setNivelBateria(100);
     	System.out.println("[+]Bateria carregada! ");*/
-    	for(int i = 0; i < bucho.length; i++){
-    		if(bucho[i].status == 1){
+    	int i = 0;
+    	for(i = 0; i < bucho.length; i++){
+    		if(bucho[i].getStatus() == 1){
     			int tempBateria = getNivelBateria();
     			int total = tempBateria + bucho[i].getEnergia();
     			setNivelBateria(total);
@@ -156,6 +158,20 @@ public class Robot  {
     	}
     }
 
+    public void preencherBucho(){
+    	for(int i = 0;  i < bucho.length; i++){
+    		System.out.println("[*]Entre com o nome da comida: ");
+    		Scanner scanner = new Scanner(System.in);
+    		String nomeComida = scanner.nextLine();
+    		System.out.println("[*]Entre com a quantidade de energia: ");
+    		Scanner scanner2 = new Scanner(System.in);
+    		int quantEnergia = scanner.nextInt();
+    		bucho[i] = new Comida(nomeComida, quantEnergia);
+    	}
+   
+    	
+		
+    }
 	public void setNivelBateria(int nivelBateria) {
 		this.nivelBateria = nivelBateria;
 	}
